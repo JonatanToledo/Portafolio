@@ -1,0 +1,10 @@
+C:\Users\ALIEN 15\Documents\JToledo\JToledoExamen1\DL\bin\Debug\DL.dll
+C:\Users\ALIEN 15\Documents\JToledo\JToledoExamen1\DL\bin\Debug\DL.pdb
+C:\Users\ALIEN 15\Documents\JToledo\JToledoExamen1\DL\obj\Debug\DL.csprojResolveAssemblyReference.cache
+C:\Users\ALIEN 15\Documents\JToledo\JToledoExamen1\DL\obj\Debug\DL.dll
+C:\Users\ALIEN 15\Documents\JToledo\JToledoExamen1\DL\obj\Debug\DL.pdb
+C:\Users\ALIEN 15\Documents\JToledo\PortaafolioVento\DL\bin\Debug\DL.dll
+C:\Users\ALIEN 15\Documents\JToledo\PortaafolioVento\DL\bin\Debug\DL.pdb
+C:\Users\ALIEN 15\Documents\JToledo\PortaafolioVento\DL\obj\Debug\DL.csprojResolveAssemblyReference.cache
+C:\Users\ALIEN 15\Documents\JToledo\PortaafolioVento\DL\obj\Debug\DL.dll
+C:\Users\ALIEN 15\Documents\JToledo\PortaafolioVento\DL\obj\Debug\DL.pdb

@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PortafolioVentoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Automovil">
+          <Key>
+            <PropertyRef Name="IdAutomovil" />
+          </Key>
+          <Property Name="IdAutomovil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="50" />
+          <Property Name="Modelo" Type="varchar" MaxLength="50" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
+          <Property Name="Imagen" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="AutomovilProveedor">
+          <Key>
+            <PropertyRef Name="IdAutomovilProveedor" />
+          </Key>
+          <Property Name="IdAutomovilProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdAutomovil" Type="int" />
+          <Property Name="IdProveedor" Type="int" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Costo" Type="int" />
+        </EntityType>
+        <Association Name="FK__Automovil__IdAut__37A5467C">
+          <End Role="Automovil" Type="Self.Automovil" Multiplicity="0..1" />
+          <End Role="AutomovilProveedor" Type="Self.AutomovilProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Automovil">
+              <PropertyRef Name="IdAutomovil" />
+            </Principal>
+            <Dependent Role="AutomovilProveedor">
+              <PropertyRef Name="IdAutomovil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Automovil__IdPro__38996AB5">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+          <End Role="AutomovilProveedor" Type="Self.AutomovilProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="IdProveedor" />
+            </Principal>
+            <Dependent Role="AutomovilProveedor">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AutomovilAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Marca" Type="varchar" Mode="In" />
+          <Parameter Name="Modelo" Type="varchar" Mode="In" />
+          <Parameter Name="Color" Type="varchar" Mode="In" />
+          <Parameter Name="Imagen" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="AutomovilDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AutomovilGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="AutomovilGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AutomovilProveedorAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AutomovilProveedorAsignadaByAutomovilId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AutomovilProveedorDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AutomovilProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AutomovilProveedorNOAsignadaByAutomovilId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AutomovilUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+          <Parameter Name="Marca" Type="varchar" Mode="In" />
+          <Parameter Name="Modelo" Type="varchar" Mode="In" />
+          <Parameter Name="Color" Type="varchar" Mode="In" />
+          <Parameter Name="Imagen" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="ProveedorAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Costo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ProveedorDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ProveedorGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ProveedorGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ProveedorUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Costo" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="PortafolioVentoModelStoreContainer">
+          <EntitySet Name="Automovil" EntityType="Self.Automovil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutomovilProveedor" EntityType="Self.AutomovilProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Automovil__IdAut__37A5467C" Association="Self.FK__Automovil__IdAut__37A5467C">
+            <End Role="Automovil" EntitySet="Automovil" />
+            <End Role="AutomovilProveedor" EntitySet="AutomovilProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Automovil__IdPro__38996AB5" Association="Self.FK__Automovil__IdPro__38996AB5">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="AutomovilProveedor" EntitySet="AutomovilProveedor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PortafolioVentoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Automovil">
+          <Key>
+            <PropertyRef Name="IdAutomovil" />
+          </Key>
+          <Property Name="IdAutomovil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="AutomovilProveedors" Relationship="Self.FK__Automovil__IdAut__145C0A3F" FromRole="Automovil" ToRole="AutomovilProveedor" />
+        </EntityType>
+        <EntityType Name="AutomovilProveedor">
+          <Key>
+            <PropertyRef Name="IdAutomovilProveedor" />
+          </Key>
+          <Property Name="IdAutomovilProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAutomovil" Type="Int32" />
+          <Property Name="IdProveedor" Type="Int32" />
+          <NavigationProperty Name="Automovil" Relationship="Self.FK__Automovil__IdAut__145C0A3F" FromRole="AutomovilProveedor" ToRole="Automovil" />
+          <NavigationProperty Name="Proveedor" Relationship="PortafolioVentoModel.FK__Automovil__IdPro__38996AB5" FromRole="AutomovilProveedor" ToRole="Proveedor" />
+        </EntityType>
+        <Association Name="FK__Automovil__IdAut__145C0A3F">
+          <End Role="Automovil" Type="Self.Automovil" Multiplicity="0..1" />
+          <End Role="AutomovilProveedor" Type="Self.AutomovilProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Automovil">
+              <PropertyRef Name="IdAutomovil" />
+            </Principal>
+            <Dependent Role="AutomovilProveedor">
+              <PropertyRef Name="IdAutomovil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PortafolioVentoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Automovils" EntityType="Self.Automovil" />
+          <EntitySet Name="AutomovilProveedors" EntityType="Self.AutomovilProveedor" />
+          <AssociationSet Name="FK__Automovil__IdAut__145C0A3F" Association="Self.FK__Automovil__IdAut__145C0A3F">
+            <End Role="Automovil" EntitySet="Automovils" />
+            <End Role="AutomovilProveedor" EntitySet="AutomovilProveedors" />
+          </AssociationSet>
+          <FunctionImport Name="AutomovilDelete">
+          <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AutomovilGetAll" ReturnType="Collection(PortafolioVentoModel.AutomovilGetAll_Result)" />
+          <FunctionImport Name="AutomovilGetById" ReturnType="Collection(PortafolioVentoModel.AutomovilGetById_Result)">
+          <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AutomovilUpdate">
+            <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+            <Parameter Name="Marca" Mode="In" Type="String" />
+            <Parameter Name="Modelo" Mode="In" Type="String" />
+            <Parameter Name="Color" Mode="In" Type="String" />
+            <Parameter Name="Imagen" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="AutomovilAdd">
+            <Parameter Name="Marca" Mode="In" Type="String" />
+            <Parameter Name="Modelo" Mode="In" Type="String" />
+            <Parameter Name="Color" Mode="In" Type="String" />
+            <Parameter Name="Imagen" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <EntitySet Name="Proveedors" EntityType="PortafolioVentoModel.Proveedor" />
+          <AssociationSet Name="FK__Automovil__IdPro__38996AB5" Association="PortafolioVentoModel.FK__Automovil__IdPro__38996AB5">
+            <End Role="Proveedor" EntitySet="Proveedors" />
+            <End Role="AutomovilProveedor" EntitySet="AutomovilProveedors" />
+          </AssociationSet>
+          <FunctionImport Name="ProveedorAdd">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Costo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProveedorDelete">
+          <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProveedorGetAll" ReturnType="Collection(PortafolioVentoModel.ProveedorGetAll_Result)" />
+          <FunctionImport Name="ProveedorGetById" ReturnType="Collection(PortafolioVentoModel.ProveedorGetById_Result)">
+          <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProveedorUpdate">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Costo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AutomovilProveedorAdd">
+            <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AutomovilProveedorAsignadaByAutomovilId" ReturnType="Collection(PortafolioVentoModel.AutomovilProveedorAsignadaByAutomovilId_Result)">
+          <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AutomovilProveedorNOAsignadaByAutomovilId" ReturnType="Collection(PortafolioVentoModel.AutomovilProveedorNOAsignadaByAutomovilId_Result)">
+          <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AutomovilProveedorDelete">
+            <Parameter Name="AutomovilProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="AutomovilGetAll_Result">
+          <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Modelo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="Imagen" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="AutomovilGetById_Result">
+          <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Modelo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Color" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="Imagen" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Costo" Type="Int32" />
+          <NavigationProperty Name="AutomovilProveedors" Relationship="PortafolioVentoModel.FK__Automovil__IdPro__38996AB5" FromRole="Proveedor" ToRole="AutomovilProveedor" />
+        </EntityType>
+        <Association Name="FK__Automovil__IdPro__38996AB5">
+          <End Type="PortafolioVentoModel.Proveedor" Role="Proveedor" Multiplicity="0..1" />
+          <End Type="PortafolioVentoModel.AutomovilProveedor" Role="AutomovilProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="IdProveedor" />
+            </Principal>
+            <Dependent Role="AutomovilProveedor">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="ProveedorGetAll_Result">
+          <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Costo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ProveedorGetById_Result">
+          <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Costo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="AutomovilProveedorAsignadaByAutomovilId_Result">
+          <Property Type="Int32" Name="IdAutomovilProveedor" Nullable="false" />
+          <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+          <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="AutomovilProveedorNOAsignadaByAutomovilId_Result">
+          <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PortafolioVentoModelStoreContainer" CdmEntityContainer="PortafolioVentoEntities">
+          <EntitySetMapping Name="Automovils">
+            <EntityTypeMapping TypeName="PortafolioVentoModel.Automovil">
+              <MappingFragment StoreEntitySet="Automovil">
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutomovilProveedors">
+            <EntityTypeMapping TypeName="PortafolioVentoModel.AutomovilProveedor">
+              <MappingFragment StoreEntitySet="AutomovilProveedor">
+                <ScalarProperty Name="IdAutomovilProveedor" ColumnName="IdAutomovilProveedor" />
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AutomovilDelete" FunctionName="PortafolioVentoModel.Store.AutomovilDelete" />
+          <FunctionImportMapping FunctionImportName="AutomovilGetAll" FunctionName="PortafolioVentoModel.Store.AutomovilGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PortafolioVentoModel.AutomovilGetAll_Result">
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AutomovilGetById" FunctionName="PortafolioVentoModel.Store.AutomovilGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PortafolioVentoModel.AutomovilGetById_Result">
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AutomovilUpdate" FunctionName="PortafolioVentoModel.Store.AutomovilUpdate" />
+          <FunctionImportMapping FunctionImportName="AutomovilAdd" FunctionName="PortafolioVentoModel.Store.AutomovilAdd" />
+          <EntitySetMapping Name="Proveedors">
+            <EntityTypeMapping TypeName="PortafolioVentoModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ProveedorAdd" FunctionName="PortafolioVentoModel.Store.ProveedorAdd" />
+          <FunctionImportMapping FunctionImportName="ProveedorDelete" FunctionName="PortafolioVentoModel.Store.ProveedorDelete" />
+          <FunctionImportMapping FunctionImportName="ProveedorGetAll" FunctionName="PortafolioVentoModel.Store.ProveedorGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PortafolioVentoModel.ProveedorGetAll_Result">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProveedorGetById" FunctionName="PortafolioVentoModel.Store.ProveedorGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PortafolioVentoModel.ProveedorGetById_Result">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProveedorUpdate" FunctionName="PortafolioVentoModel.Store.ProveedorUpdate" />
+          <FunctionImportMapping FunctionImportName="AutomovilProveedorAdd" FunctionName="PortafolioVentoModel.Store.AutomovilProveedorAdd" />
+          <FunctionImportMapping FunctionImportName="AutomovilProveedorAsignadaByAutomovilId" FunctionName="PortafolioVentoModel.Store.AutomovilProveedorAsignadaByAutomovilId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PortafolioVentoModel.AutomovilProveedorAsignadaByAutomovilId_Result">
+                <ScalarProperty Name="IdAutomovilProveedor" ColumnName="IdAutomovilProveedor" />
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AutomovilProveedorNOAsignadaByAutomovilId" FunctionName="PortafolioVentoModel.Store.AutomovilProveedorNOAsignadaByAutomovilId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PortafolioVentoModel.AutomovilProveedorNOAsignadaByAutomovilId_Result">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AutomovilProveedorDelete" FunctionName="PortafolioVentoModel.Store.AutomovilProveedorDelete" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

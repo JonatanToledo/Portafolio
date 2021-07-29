@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PortafolioVentoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Automovil">
+    <Key>
+      <PropertyRef Name="IdAutomovil" />
+    </Key>
+    <Property Name="IdAutomovil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Marca" Type="varchar" MaxLength="50" />
+    <Property Name="Modelo" Type="varchar" MaxLength="50" />
+    <Property Name="Color" Type="varchar" MaxLength="50" />
+    <Property Name="Imagen" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="AutomovilProveedor">
+    <Key>
+      <PropertyRef Name="IdAutomovilProveedor" />
+    </Key>
+    <Property Name="IdAutomovilProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAutomovil" Type="int" />
+    <Property Name="IdProveedor" Type="int" />
+  </EntityType>
+  <EntityType Name="Proveedor">
+    <Key>
+      <PropertyRef Name="IdProveedor" />
+    </Key>
+    <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Costo" Type="int" />
+  </EntityType>
+  <Association Name="FK__Automovil__IdAut__37A5467C">
+    <End Role="Automovil" Type="Self.Automovil" Multiplicity="0..1" />
+    <End Role="AutomovilProveedor" Type="Self.AutomovilProveedor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Automovil">
+        <PropertyRef Name="IdAutomovil" />
+      </Principal>
+      <Dependent Role="AutomovilProveedor">
+        <PropertyRef Name="IdAutomovil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Automovil__IdPro__38996AB5">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+    <End Role="AutomovilProveedor" Type="Self.AutomovilProveedor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="IdProveedor" />
+      </Principal>
+      <Dependent Role="AutomovilProveedor">
+        <PropertyRef Name="IdProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AutomovilAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Marca" Type="varchar" Mode="In" />
+    <Parameter Name="Modelo" Type="varchar" Mode="In" />
+    <Parameter Name="Color" Type="varchar" Mode="In" />
+    <Parameter Name="Imagen" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="AutomovilDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AutomovilGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="AutomovilGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AutomovilProveedorAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AutomovilProveedorAsignadaByAutomovilId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AutomovilProveedorDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AutomovilProveedor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AutomovilProveedorNOAsignadaByAutomovilId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AutomovilUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="Marca" Type="varchar" Mode="In" />
+    <Parameter Name="Modelo" Type="varchar" Mode="In" />
+    <Parameter Name="Color" Type="varchar" Mode="In" />
+    <Parameter Name="Imagen" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="ProveedorAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Costo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProveedorDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProveedorGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ProveedorGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProveedorUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Costo" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="PortafolioVentoModelStoreContainer">
+    <EntitySet Name="Automovil" EntityType="Self.Automovil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AutomovilProveedor" EntityType="Self.AutomovilProveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Automovil__IdAut__37A5467C" Association="Self.FK__Automovil__IdAut__37A5467C">
+      <End Role="Automovil" EntitySet="Automovil" />
+      <End Role="AutomovilProveedor" EntitySet="AutomovilProveedor" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Automovil__IdPro__38996AB5" Association="Self.FK__Automovil__IdPro__38996AB5">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="AutomovilProveedor" EntitySet="AutomovilProveedor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

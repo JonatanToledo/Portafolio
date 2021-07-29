@@ -1,0 +1,49 @@
+﻿@model ML.Proveedor
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>Proveedor</b></h2>
+            <p>Aquí se muestra la lista de todas los proveedores registrados. De igual manera aquí se pueden registrar, editar y eliminar proveedores.</p>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div style="float:right; margin-bottom:1rem;">
+                @Html.ActionLink("+", "Form", "Proveedor", htmlAttributes: new { @class = "btn btn-success" })
+            </div>
+            <table class="table table-bordered table-responsive table-hover">
+                <thead style="text-align:center;">
+                    <tr>
+                        <td><b>Editar</b></td>
+                        <td class="hidden">IdProveedor</td>
+                        <td><b>Nombre</b></td>
+                        <td><b>Costo</b></td>
+                        <td><b>Elimina</b></td>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center;">
+                    @{
+                        foreach (ML.Proveedor proveedor in Model.Proveedores)
+                        {
+                            <tr>
+                                <td><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Proveedor", new { IdProveedor = proveedor.IdProveedor })"></a></td>
+                                <td class="hidden">@proveedor.IdProveedor</td>
+                                <td>@proveedor.Nombre</td>
+                                <td>$@proveedor.Costo</td>
+                                <td><a class="btn btn-danger glyphicon glyphicon-remove" href="@Url.Action("Delete", "Proveedor", new { IdProveedor = proveedor.IdProveedor })" onclick="return confirm('¿Estas seguro que deseas eliminar éste Proveedor?');"></a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

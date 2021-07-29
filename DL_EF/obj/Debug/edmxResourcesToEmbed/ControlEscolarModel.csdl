@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ControlEscolarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Alumno">
+    <Key>
+      <PropertyRef Name="IdAlumno" />
+    </Key>
+    <Property Name="IdAlumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AlumnoMaterias" Relationship="ControlEscolarModel.FK__AlumnoMat__IdAlu__36B12243" FromRole="Alumno" ToRole="AlumnoMateria" />
+  </EntityType>
+  <EntityType Name="Materia">
+    <Key>
+      <PropertyRef Name="IdMateria" />
+    </Key>
+    <Property Name="IdMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Costo" Type="Double" />
+    <NavigationProperty Name="AlumnoMaterias" Relationship="ControlEscolarModel.FK__AlumnoMat__IdMat__37A5467C" FromRole="Materia" ToRole="AlumnoMateria" />
+  </EntityType>
+  <EntityContainer Name="ControlEscolarEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alumnoes" EntityType="Self.Alumno" />
+    <EntitySet Name="Materias" EntityType="Self.Materia" />
+    <FunctionImport Name="AlumnoAdd">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoDelete">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoGetAll" ReturnType="Collection(ControlEscolarModel.AlumnoGetAll_Result)" />
+    <FunctionImport Name="AlumnoGetById" ReturnType="Collection(ControlEscolarModel.AlumnoGetById_Result)">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoUpdate">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MateriaAdd">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Costo" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="MateriaDelete">
+      <Parameter Name="IdMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MateriaGetById" ReturnType="Collection(ControlEscolarModel.MateriaGetById_Result)">
+      <Parameter Name="IdMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MateriaUpdate">
+      <Parameter Name="IdMateria" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Costo" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="MateriaGetAll" ReturnType="Collection(ControlEscolarModel.MateriaGetAll_Result)" />
+    <EntitySet Name="AlumnoMaterias" EntityType="ControlEscolarModel.AlumnoMateria" />
+    <AssociationSet Name="FK__AlumnoMat__IdAlu__36B12243" Association="ControlEscolarModel.FK__AlumnoMat__IdAlu__36B12243">
+      <End Role="Alumno" EntitySet="Alumnoes" />
+      <End Role="AlumnoMateria" EntitySet="AlumnoMaterias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AlumnoMat__IdMat__37A5467C" Association="ControlEscolarModel.FK__AlumnoMat__IdMat__37A5467C">
+      <End Role="Materia" EntitySet="Materias" />
+      <End Role="AlumnoMateria" EntitySet="AlumnoMaterias" />
+    </AssociationSet>
+    <FunctionImport Name="AlumnoMateriaAsignadaByAlumnoId" ReturnType="Collection(ControlEscolarModel.AlumnoMateriaAsignadaByAlumnoId_Result)">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoMateriaNOAsignadaByAlumnoId" ReturnType="Collection(ControlEscolarModel.AlumnoMateriaNOAsignadaByAlumnoId_Result)">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoMateriaAdd">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+      <Parameter Name="IdMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AlumnoMateriaDelete">
+      <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+      <Parameter Name="IdMateria" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="AlumnoGetAll_Result">
+    <Property Type="Int32" Name="IdAlumno" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="AlumnoGetById_Result">
+    <Property Type="Int32" Name="IdAlumno" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="MateriaGetById_Result">
+    <Property Type="Int32" Name="IdMateria" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="Costo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="MateriaGetAll_Result">
+    <Property Type="Int32" Name="IdMateria" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="Costo" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="AlumnoMateria">
+    <Key>
+      <PropertyRef Name="IdAlumnoMateria" />
+    </Key>
+    <Property Name="IdAlumnoMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAlumno" Type="Int32" />
+    <Property Name="IdMateria" Type="Int32" />
+    <NavigationProperty Name="Alumno" Relationship="ControlEscolarModel.FK__AlumnoMat__IdAlu__36B12243" FromRole="AlumnoMateria" ToRole="Alumno" />
+    <NavigationProperty Name="Materia" Relationship="ControlEscolarModel.FK__AlumnoMat__IdMat__37A5467C" FromRole="AlumnoMateria" ToRole="Materia" />
+  </EntityType>
+  <Association Name="FK__AlumnoMat__IdAlu__36B12243">
+    <End Type="ControlEscolarModel.Alumno" Role="Alumno" Multiplicity="0..1" />
+    <End Type="ControlEscolarModel.AlumnoMateria" Role="AlumnoMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="IdAlumno" />
+      </Principal>
+      <Dependent Role="AlumnoMateria">
+        <PropertyRef Name="IdAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AlumnoMat__IdMat__37A5467C">
+    <End Type="ControlEscolarModel.Materia" Role="Materia" Multiplicity="0..1" />
+    <End Type="ControlEscolarModel.AlumnoMateria" Role="AlumnoMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="IdMateria" />
+      </Principal>
+      <Dependent Role="AlumnoMateria">
+        <PropertyRef Name="IdMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="AlumnoMateriaAsignadaByAlumnoId_Result">
+    <Property Type="Int32" Name="IdAlumnoMateria" Nullable="false" />
+    <Property Type="Int32" Name="IdAlumno" Nullable="false" />
+    <Property Type="Int32" Name="IdMateria" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="AlumnoMateriaNOAsignadaByAlumnoId_Result">
+    <Property Type="Int32" Name="IdMateria" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

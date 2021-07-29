@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ControlEscolarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alumno">
+    <Key>
+      <PropertyRef Name="IdAlumno" />
+    </Key>
+    <Property Name="IdAlumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="ApellidoPaterno" Type="varchar" MaxLength="50" />
+    <Property Name="ApellidoMaterno" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AlumnoMateria">
+    <Key>
+      <PropertyRef Name="IdAlumnoMateria" />
+    </Key>
+    <Property Name="IdAlumnoMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAlumno" Type="int" />
+    <Property Name="IdMateria" Type="int" />
+  </EntityType>
+  <EntityType Name="Materia">
+    <Key>
+      <PropertyRef Name="IdMateria" />
+    </Key>
+    <Property Name="IdMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Costo" Type="float" />
+  </EntityType>
+  <Association Name="FK__AlumnoMat__IdAlu__36B12243">
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="0..1" />
+    <End Role="AlumnoMateria" Type="Self.AlumnoMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="IdAlumno" />
+      </Principal>
+      <Dependent Role="AlumnoMateria">
+        <PropertyRef Name="IdAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AlumnoMat__IdMat__37A5467C">
+    <End Role="Materia" Type="Self.Materia" Multiplicity="0..1" />
+    <End Role="AlumnoMateria" Type="Self.AlumnoMateria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="IdMateria" />
+      </Principal>
+      <Dependent Role="AlumnoMateria">
+        <PropertyRef Name="IdMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AlumnoAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AlumnoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAlumno" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AlumnoGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="AlumnoGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAlumno" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AlumnoMateriaAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAlumno" Type="int" Mode="In" />
+    <Parameter Name="IdMateria" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AlumnoMateriaAsignadaByAlumnoId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAlumno" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AlumnoMateriaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAlumno" Type="int" Mode="In" />
+    <Parameter Name="IdMateria" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AlumnoMateriaNOAsignadaByAlumnoId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAlumno" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AlumnoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAlumno" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="MateriaAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Costo" Type="float" Mode="In" />
+  </Function>
+  <Function Name="MateriaDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdMateria" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MateriaGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="MateriaGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdMateria" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MateriaUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdMateria" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="Costo" Type="float" Mode="In" />
+  </Function>
+  <EntityContainer Name="ControlEscolarModelStoreContainer">
+    <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AlumnoMateria" EntityType="Self.AlumnoMateria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Materia" EntityType="Self.Materia" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__AlumnoMat__IdAlu__36B12243" Association="Self.FK__AlumnoMat__IdAlu__36B12243">
+      <End Role="Alumno" EntitySet="Alumno" />
+      <End Role="AlumnoMateria" EntitySet="AlumnoMateria" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AlumnoMat__IdMat__37A5467C" Association="Self.FK__AlumnoMat__IdMat__37A5467C">
+      <End Role="Materia" EntitySet="Materia" />
+      <End Role="AlumnoMateria" EntitySet="AlumnoMateria" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="90e04b41-bc47-4218-8937-022e64af1229" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:51784/Proveedor.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Proveedor.xsd" MetadataType="Schema" ID="8a4a5c94-b896-4bde-ab99-df5c2dc0b57a" SourceId="1" SourceUrl="http://localhost:51784/Proveedor.svc?xsd=xsd4" />
+    <MetadataFile FileName="Proveedor1.xsd" MetadataType="Schema" ID="5dc71429-a7b7-472c-9e10-e034e3569d8b" SourceId="1" SourceUrl="http://localhost:51784/Proveedor.svc?xsd=xsd5" />
+    <MetadataFile FileName="Proveedor2.xsd" MetadataType="Schema" ID="c75e14e3-a9db-441f-b52e-3ba372ca135b" SourceId="1" SourceUrl="http://localhost:51784/Proveedor.svc?xsd=xsd2" />
+    <MetadataFile FileName="Proveedor3.xsd" MetadataType="Schema" ID="2bb38286-524e-440b-9f7c-d80c5e553513" SourceId="1" SourceUrl="http://localhost:51784/Proveedor.svc?xsd=xsd3" />
+    <MetadataFile FileName="Proveedor4.xsd" MetadataType="Schema" ID="cbb2156f-2d1b-4193-97db-d1fc795766d9" SourceId="1" SourceUrl="http://localhost:51784/Proveedor.svc?xsd=xsd0" />
+    <MetadataFile FileName="Proveedor5.xsd" MetadataType="Schema" ID="6bb23f8b-11bd-4ea7-80bd-80f1944a3bbd" SourceId="1" SourceUrl="http://localhost:51784/Proveedor.svc?xsd=xsd1" />
+    <MetadataFile FileName="Proveedor.disco" MetadataType="Disco" ID="55a2ffec-8ceb-4dee-89f8-19168d413f7e" SourceId="1" SourceUrl="http://localhost:51784/Proveedor.svc?disco" />
+    <MetadataFile FileName="Proveedor.wsdl" MetadataType="Wsdl" ID="70b91d11-82c9-4464-9d02-13535093c4f1" SourceId="1" SourceUrl="http://localhost:51784/Proveedor.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

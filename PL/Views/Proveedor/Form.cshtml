@@ -1,0 +1,71 @@
+﻿@model ML.Proveedor
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>Proveedores</b></h2>
+            @if (Model.IdProveedor != 0)
+            {
+                <p>Favor de llenar los campos de abajo para editar un Proveedor.</p>
+            }
+            else
+            {
+                <p>Favor de llenar los campos de abajo para registrar un Proveedor.</p>
+            }
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @{
+                using (Html.BeginForm("Form", "Proveedor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => Model.IdProveedor, new { @class = "hidden" })
+                                @Html.TextBoxFor(model => Model.IdProveedor, new { @class = "form-control hidden" })
+                                @Html.ValidationMessageFor(model => Model.IdProveedor)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => Model.Nombre)
+                                @Html.TextBoxFor(model => Model.Nombre, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => Model.Nombre)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => Model.Costo)
+                                @{
+                                    if (Model.Costo == 0)
+                                    {
+                                        @Html.TextBoxFor(model => Model.Costo, " ", new { @class = "form-control"})
+                                        @Html.ValidationMessageFor(model => Model.Costo)
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBoxFor(model => Model.Costo, new { @class = "form-control"})
+                                        @Html.ValidationMessageFor(model => Model.Costo)
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <input type="submit" value="Guardar" class="btn btn-success"/>
+                                @Html.ActionLink("Regresar", "GetAll", "Proveedor", htmlAttributes: new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+

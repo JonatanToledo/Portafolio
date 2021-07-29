@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PortafolioVentoModelStoreContainer" CdmEntityContainer="PortafolioVentoEntities">
+    <EntitySetMapping Name="Automovils">
+      <EntityTypeMapping TypeName="PortafolioVentoModel.Automovil">
+        <MappingFragment StoreEntitySet="Automovil">
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AutomovilProveedors">
+      <EntityTypeMapping TypeName="PortafolioVentoModel.AutomovilProveedor">
+        <MappingFragment StoreEntitySet="AutomovilProveedor">
+          <ScalarProperty Name="IdAutomovilProveedor" ColumnName="IdAutomovilProveedor" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AutomovilDelete" FunctionName="PortafolioVentoModel.Store.AutomovilDelete" />
+    <FunctionImportMapping FunctionImportName="AutomovilGetAll" FunctionName="PortafolioVentoModel.Store.AutomovilGetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PortafolioVentoModel.AutomovilGetAll_Result">
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AutomovilGetById" FunctionName="PortafolioVentoModel.Store.AutomovilGetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PortafolioVentoModel.AutomovilGetById_Result">
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AutomovilUpdate" FunctionName="PortafolioVentoModel.Store.AutomovilUpdate" />
+    <FunctionImportMapping FunctionImportName="AutomovilAdd" FunctionName="PortafolioVentoModel.Store.AutomovilAdd" />
+    <EntitySetMapping Name="Proveedors">
+      <EntityTypeMapping TypeName="PortafolioVentoModel.Proveedor">
+        <MappingFragment StoreEntitySet="Proveedor">
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ProveedorAdd" FunctionName="PortafolioVentoModel.Store.ProveedorAdd" />
+    <FunctionImportMapping FunctionImportName="ProveedorDelete" FunctionName="PortafolioVentoModel.Store.ProveedorDelete" />
+    <FunctionImportMapping FunctionImportName="ProveedorGetAll" FunctionName="PortafolioVentoModel.Store.ProveedorGetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PortafolioVentoModel.ProveedorGetAll_Result">
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProveedorGetById" FunctionName="PortafolioVentoModel.Store.ProveedorGetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PortafolioVentoModel.ProveedorGetById_Result">
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProveedorUpdate" FunctionName="PortafolioVentoModel.Store.ProveedorUpdate" />
+    <FunctionImportMapping FunctionImportName="AutomovilProveedorAdd" FunctionName="PortafolioVentoModel.Store.AutomovilProveedorAdd" />
+    <FunctionImportMapping FunctionImportName="AutomovilProveedorAsignadaByAutomovilId" FunctionName="PortafolioVentoModel.Store.AutomovilProveedorAsignadaByAutomovilId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PortafolioVentoModel.AutomovilProveedorAsignadaByAutomovilId_Result">
+          <ScalarProperty Name="IdAutomovilProveedor" ColumnName="IdAutomovilProveedor" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AutomovilProveedorNOAsignadaByAutomovilId" FunctionName="PortafolioVentoModel.Store.AutomovilProveedorNOAsignadaByAutomovilId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PortafolioVentoModel.AutomovilProveedorNOAsignadaByAutomovilId_Result">
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AutomovilProveedorDelete" FunctionName="PortafolioVentoModel.Store.AutomovilProveedorDelete" />
+  </EntityContainerMapping>
+</Mapping>

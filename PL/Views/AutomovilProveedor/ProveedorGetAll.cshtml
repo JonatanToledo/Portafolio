@@ -1,0 +1,39 @@
+﻿@model ML.Automovil
+@{
+    ViewBag.Title = "AutomovilGetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>Asignar proveedores</b></h2>
+            <p>Aquí se muestra la lista de todos los automoviles para editar sus proveedores asignados.</p>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <table class="table table-bordered table-responsive" style="text-align:center">
+                <thead>
+                    <tr style="text-align:center">
+                        <td><b>Editar</b></td>
+                        <td><b>Automovil</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (ML.Automovil automovil in Model.Automoviles)
+                        {
+                            <tr>
+                                <td><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("GetAllProveedoresAsignadasById", "AutomovilProveedor", new { IdAutomovil = automovil.IdAutomovil })"></a></td>
+                                <td>@automovil.Marca - @automovil.Modelo - @automovil.Color</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

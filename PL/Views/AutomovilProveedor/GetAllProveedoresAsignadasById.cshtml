@@ -1,0 +1,75 @@
+﻿@model ML.AutomovilProveedor
+@{
+    ViewBag.Title = "GetAllProveedoresAsignadasById";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>Automovil: Proveedores asignados</b></h2>
+            <p>Elimine o añada proveedores al automovil.</p>
+            <hr />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:1rem;">
+        <div class="col-md-3">
+            @Html.LabelFor(model => Model.Automovil.Marca, "Marca")
+            @Html.TextBoxFor(model => Model.Automovil.Marca, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => Model.Automovil.Marca)
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(model => Model.Automovil.Modelo, "Modelo")
+            @Html.TextBoxFor(model => Model.Automovil.Modelo, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => Model.Automovil.Modelo)
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(model => Model.Automovil.Color, "Color")
+            @Html.TextBoxFor(model => Model.Automovil.Color, new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => Model.Automovil.Color)
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-9">
+            <div style="float:right; margin-bottom:1rem;">
+                @{
+                    int IdAutomovilNO = 0;
+                    IdAutomovilNO = Model.Automovil.IdAutomovil;
+                    <a class="btn btn-success" href="@Url.Action("GetAllProveedoresNOAsignadasById", "AutomovilProveedor", new { IdAutomovil = IdAutomovilNO })">+</a>
+                }
+            </div>
+            <table class="table table-bordered table-responsive" style="text-align:center">
+                <thead>
+                    <tr>
+                        <td><b>Proveedor</b></td>
+                        <td><b>Eliminar</b></td>
+                    </tr>
+                </thead>
+                @{
+                    if (Model.AutomovilProveedores.Count != 0)
+                    {
+                        <tbody>
+                            @foreach (ML.AutomovilProveedor automovilProveedor in Model.AutomovilProveedores)
+                            {
+                                <tr>
+                                    <td>@automovilProveedor.Proveedor.Nombre</td>
+                                    <td><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("DeleteProveedor", "AutomovilProveedor", new { IdAutomovilProveedor = automovilProveedor.IdAutomovilProveedor })" onclick="return confirm('¿Estas seguro que deseas eliminar éste proveedor?');"></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                    else
+                    {
+                        <p style="margin-top:2rem;">El automovil no cuenta con proveedores asignados. Oprima el botón de <b>"+"</b> para asignarle una o más proveedores.</p>
+                    }
+                }
+            </table>
+            <div style="float:right; margin-top:1rem;">
+                @Html.ActionLink("Regresar", "ProveedorGetAll", "AutomovilProveedor", new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+
+

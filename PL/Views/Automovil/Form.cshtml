@@ -1,0 +1,92 @@
+﻿@model ML.Automovil
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>Automovil</b></h2>
+            <p>Favor de llenar los campos de abajo para registrar o editar un Automovil.</p>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @{
+                using(Html.BeginForm("Form", "Automovil", FormMethod.Post, new{ enctype = "multipart/form-data"}))
+                {
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.IdAutomovil, new { @class = "hidden"})
+                                @Html.TextBoxFor(model => model.IdAutomovil, new { @class = "form-control hidden"})
+                                @Html.ValidationMessageFor(model => model.IdAutomovil)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.Marca, "Marca")
+                                @Html.TextBoxFor(model => model.Marca, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Marca)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.Modelo, "Modelo")
+                                @Html.TextBoxFor(model => model.Modelo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Modelo)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.Color, "Color")
+                                @Html.TextBoxFor(model => model.Color, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Color)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.Imagen)
+                                <input type="file" name="ImagenData" onchange="readURL(this);">
+                                @if (Model.Imagen != null)
+                                {
+                                    <img id="ImagenPreview" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Imagen)" width="100" height="100" />
+                                }
+                                else
+                                {
+                                    <img id="ImagenPreview" src="~/Content/SIN-IMAGEN.jpg" style=" height:150px; width:250px;" />
+                                }
+                                @Html.ValidationMessageFor(model => model.Imagen)
+                            </div>
+                        </div>
+                        @Html.HiddenFor(model => model.Imagen)
+
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <input type="submit" value="Guardar" class="btn btn-success" />
+                                @Html.ActionLink("Regresar", "GetAll", "Automovil", htmlAttributes: new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#ImagenPreview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+

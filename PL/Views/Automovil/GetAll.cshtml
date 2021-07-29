@@ -1,0 +1,63 @@
+﻿@model ML.Automovil
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>Automoviles</b></h2>
+            <p>Aquí se muestra la lista de todos los automoviles registrados. De igual manera aquí se pueden registrar, editar y eliminar automoviles.</p>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div style="float:right; margin-bottom:1rem;">
+            @Html.ActionLink("+", "Form", "Automovil", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+        <table class="table table-bordered table-responsive table-hover">
+            <thead style="text-align:center;">
+                <tr>
+                    <td><b>Editar</b></td>
+                    <td class="hidden">IdAutomovil</td>
+                    <td><b>Marca</b></td>
+                    <td><b>Modelo</b></td>
+                    <td><b>Color</b></td>
+                    <td><b>Imagen</b></td>
+                    <td><b>Eliminar</b></td>
+                </tr>
+            </thead>
+            <tbody style="text-align:center;">
+                @{
+                    foreach (ML.Automovil automovil in Model.Automoviles)
+                    {
+                        <tr>
+                            <td><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Automovil", new { IdAutomovil = automovil.IdAutomovil })"></a></td>
+                            <td class="hidden">@automovil.IdAutomovil</td>
+                            <td>@automovil.Marca</td>
+                            <td>@automovil.Modelo</td>
+                            <td>@automovil.Color</td>
+                            <td>
+                                @if (automovil.Imagen != null)
+                                {
+                                    <img id="ImagenPreview" src="data:image/jpeg;base64,@Convert.ToBase64String(automovil.Imagen)" width="100" height="100" />
+                                }
+                                else
+                                {
+                                    <img id="ImagenPreview" src="~/Content/SIN-IMAGEN.jpg" style=" height:150px; width:150px;" />
+
+                                }
+                            </td>
+                            <td><a class="btn btn-danger glyphicon glyphicon-remove" href="@Url.Action("Delete", "Automovil", new { IdAutomovil = automovil.IdAutomovil })" onclick="return confirm('¿Estas seguro que deseas eliminar este automovil?');"></a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

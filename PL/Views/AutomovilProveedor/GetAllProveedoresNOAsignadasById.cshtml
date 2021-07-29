@@ -1,0 +1,76 @@
+﻿@model ML.AutomovilProveedor
+@{
+    ViewBag.Title = "GetAllMateriasNOAsignadasById";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>Automovil: Asignar proveedores</b></h2>
+            <p>Seleccione los proveedores que desea asignar al automovil.</p>
+            <hr />
+        </div>
+    </div>
+    @using (Html.BeginForm("AddProveedor", "AutomovilProveedor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row" style="margin-bottom:1rem;">
+            <div class="hidden">
+                @Html.LabelFor(model => Model.Automovil.IdAutomovil)
+                @Html.TextBoxFor(model => Model.Automovil.IdAutomovil, new { @class = "form-control hidden", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => Model.Automovil.IdAutomovil)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => Model.Automovil.Marca, "Marca")
+                @Html.TextBoxFor(model => Model.Automovil.Marca, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => Model.Automovil.Marca)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => Model.Automovil.Modelo, "Modelo")
+                @Html.TextBoxFor(model => Model.Automovil.Modelo, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => Model.Automovil.Modelo)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => Model.Automovil.Color, "Color")
+                @Html.TextBoxFor(model => Model.Automovil.Color, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => Model.Automovil.Color)
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered table-responsive" style="text-align:center">
+                    <thead>
+                        <tr>
+                            <td><b>Seleccionar</b></td>
+                            <td><b>Nombre</b></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ML.AutomovilProveedor automovilProveedor in Model.AutomovilProveedores)
+                        {
+                            <tr>
+                                <td><input style="text-align:center;" type="checkbox" class="checkbox-inline" name="AutomovilProveedores" value="@automovilProveedor.Proveedor.IdProveedor" /></td>
+                                <td>@automovilProveedor.Proveedor.Nombre</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div style="float:right; margin-top:1rem;">
+                    <input class="btn btn-success" type="submit" value="Guardar" id="btnGuardar" disabled="disabled" />
+                    <a class="btn btn-danger" href="@Url.Action("GetAllProveedoresAsignadasById", "AutomovilProveedor", new { IdAutomovil = Model.Automovil.IdAutomovil })">Regresar</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".checkbox-inline").click(function () {
+            $('#btnGuardar').prop('disabled', $('input.checkbox-inline:checked').length == 0);
+        });
+    });
+</script>
